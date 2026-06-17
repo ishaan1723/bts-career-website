@@ -1,0 +1,41 @@
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Services from "./components/Services";
+import WhyBTS from "./components/WhyBTS";
+import AssessmentProcess from "./components/AssessmentProcess";
+import CTA from "./components/CTA";
+import Testimonials from "./components/Testimonials";
+import FAQ from "./components/FAQ";
+import Footer from "./components/Footer";
+import Contact from "./components/Contact";
+import WhatsAppButton from "./components/WhatsAppButton";
+import Stats from "./components/Stats";
+import Founder from "./components/Founder";
+import WhoWeHelp from "./components/WhoWeHelp";
+import Problems from "./components/Problems";
+function App() {
+  return (
+    <>
+      <Navbar />
+      <Hero />
+      <Stats />
+      <About />
+      <Founder />
+      <WhyBTS />
+      
+<WhoWeHelp />
+<Problems />
+      <Services />
+      <AssessmentProcess />
+      <Testimonials />
+      <FAQ />
+      <Contact />
+      <CTA />
+      <Footer />
+      <WhatsAppButton />
+    </>
+  );
+}
+
+export default App;
