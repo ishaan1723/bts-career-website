@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Services from "./components/Services";
 import WhyBTS from "./components/WhyBTS";
+import PsychometricAssessment from "./components/PsychometricAssessment";
 import AssessmentProcess from "./components/AssessmentProcess";
 import CTA from "./components/CTA";
 import Testimonials from "./components/Testimonials";
@@ -23,6 +24,7 @@ function App() {
       <About />
       <Founder />
       <WhyBTS />
+      <PsychometricAssessment />
       
 <WhoWeHelp />
 <Problems />

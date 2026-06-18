@@ -2,40 +2,40 @@ import { useState } from "react";
 
 const testimonials = [
   {
-    name: "Student",
+    name: "Sangita (standard -12) student",
     subtitle: "Career Guidance Assessment",
     text: "The career guidance assessment helped me gain clarity about my interests, strengths, and future opportunities. The report suggested suitable career paths and highlighted areas for improvement. It is especially useful for students who are confused after Class 10 and Class 12.",
     initials: "S",
   },
   {
-    name: "Parent",
+    name: "Amaratji Thakor - Parent",
     subtitle: "Psychometric Assessment for Child",
     text: "The psychometric assessment helped us better understand our child's capabilities, interests, and future direction. The guidance was based on aptitude, personality, and strengths rather than just marks. The report was simple to understand and extremely helpful.",
-    initials: "P",
+    initials: "AT",
   },
   {
-    name: "Ankush Himali",
+    name: "Ankur Shrimali",
     subtitle: "Stream Selection Guidance",
     text: "We were confused about which stream would be best after Class 10. The Scientific Psychometric Test provided detailed insights into strengths, interests, decision-making abilities, and career suitability. The report gave us confidence in making the right academic decision.",
-    initials: "AH",
+    initials: "AS",
   },
 ];
 
 const videoTestimonials = [
   {
     src: "/testimonial-1.mp4",
-    title: "Career Guidance Assessment",
-    subtitle: "Student Success Story",
+    title: "Sangita (std 12th Student)",
+    subtitle: "Career Guidance Assessment",
   },
   {
     src: "/testimonial--2.mp4",
-    title: "Parent Feedback",
-    subtitle: "Parent Experience",
+    title: "Amaratji Thakor (Parent)",
+    subtitle: "Psychometric Assessment Feedback",
   },
   {
     src: "/testimonial-3.mp4",
-    title: "Stream Selection Guidance",
-    subtitle: "Career Decision Journey",
+    title: "Ankur Shrimali",
+    subtitle: "Stream Selection Guidance",
   },
 ];
 

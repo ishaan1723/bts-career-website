@@ -26,7 +26,7 @@ function Navbar() {
           </a>
 
           {/* Navigation Links */}
-          <div className="flex items-center gap-8 text-gray-700">
+          <div className="flex items-center gap-8 text-gray-700 font-medium">
             <a href="#home" className="hover:text-blue-600 transition">
               Home
             </a>
@@ -37,6 +37,10 @@ function Navbar() {
 
             <a href="#services" className="hover:text-blue-600 transition">
               Services
+            </a>
+
+            <a href="#assessment-details" className="hover:text-blue-600 transition">
+              Assessment
             </a>
 
             <a href="#contact" className="hover:text-blue-600 transition">
@@ -85,10 +89,11 @@ function Navbar() {
 
           </div>
 
-          <div className="flex justify-center gap-5 mt-3 text-sm text-gray-700">
+          <div className="flex justify-center flex-wrap gap-x-4 gap-y-1.5 mt-3 text-sm text-gray-750 font-medium">
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#services">Services</a>
+            <a href="#assessment-details">Assessment</a>
             <a href="#contact">Contact</a>
           </div>
 
