@@ -1,24 +1,24 @@
 function Stats() {
   const stats = [
     {
-      title: "Hundreds of Students Guided",
+      title: "✅ 350+ Students Assessed",
       description:
         "Helping learners make informed academic and career decisions.",
     },
     {
-      title: "Umpteen Career Reports Generated",
+      title: "✅ 120+ Career Reports Generated",
       description:
         "Personalized assessment reports supporting career clarity.",
     },
     {
-      title: "Many Schools & Coaching Centres Contacted",
+      title: "✅ 95% Parent Satisfaction",
       description:
-        "Building partnerships to support student success and guidance.",
+        "Positive feedback from parents and educational stakeholders.",
     },
     {
-      title: "95%+ Satisfaction Rate",
+      title: "✅ Many Schools & Coaching Centres Contacted",
       description:
-        "Positive feedback from students, parents, and educational stakeholders.",
+        "Building partnerships to support student success and guidance.",
     },
   ];
 
