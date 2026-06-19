@@ -1,26 +1,47 @@
+import { useState, useEffect } from "react";
+import { fetchGoogleSheetData } from "../utils/googleSheets";
+
+const FALLBACK_STATS = [
+  {
+    title: "✅ 350+ Students Assessed",
+    description:
+      "Helping learners make informed academic and career decisions.",
+  },
+  {
+    title: "✅ 120+ Career Reports Generated",
+    description:
+      "Personalized assessment reports supporting career clarity.",
+  },
+  {
+    title: "✅ 95% Parent Satisfaction",
+    description:
+      "Positive feedback from parents and educational stakeholders.",
+  },
+  {
+    title: "✅ Many Schools & Coaching Centres Contacted",
+    description:
+      "Building partnerships to support student success and guidance.",
+  },
+];
+
+const SHEET_ID = import.meta.env.VITE_GOOGLE_SHEET_ID || "";
+
 function Stats() {
-  const stats = [
-    {
-      title: "✅ 350+ Students Assessed",
-      description:
-        "Helping learners make informed academic and career decisions.",
-    },
-    {
-      title: "✅ 120+ Career Reports Generated",
-      description:
-        "Personalized assessment reports supporting career clarity.",
-    },
-    {
-      title: "✅ 95% Parent Satisfaction",
-      description:
-        "Positive feedback from parents and educational stakeholders.",
-    },
-    {
-      title: "✅ Many Schools & Coaching Centres Contacted",
-      description:
-        "Building partnerships to support student success and guidance.",
-    },
-  ];
+  const [stats, setStats] = useState(FALLBACK_STATS);
+
+  useEffect(() => {
+    if (SHEET_ID) {
+      fetchGoogleSheetData(SHEET_ID, "Stats").then((data) => {
+        if (data && data.length > 0) {
+          const formatted = data.map((item) => ({
+            title: item.title || "",
+            description: item.description || "",
+          }));
+          setStats(formatted);
+        }
+      });
+    }
+  }, []);
 
   return (
     <section className="bg-white py-16">

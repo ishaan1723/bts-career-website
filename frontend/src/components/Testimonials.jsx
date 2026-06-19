@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { fetchGoogleSheetData } from "../utils/googleSheets";
 
-const testimonials = [
+const FALLBACK_TESTIMONIALS = [
   {
     name: "Sangita (standard -12) student",
     subtitle: "Career Guidance Assessment",
@@ -102,7 +103,27 @@ function VideoCard({ src, title, subtitle }) {
   );
 }
 
+const SHEET_ID = import.meta.env.VITE_GOOGLE_SHEET_ID || "";
+
 function Testimonials() {
+  const [list, setList] = useState(FALLBACK_TESTIMONIALS);
+
+  useEffect(() => {
+    if (SHEET_ID) {
+      fetchGoogleSheetData(SHEET_ID, "Testimonials").then((data) => {
+        if (data && data.length > 0) {
+          const formatted = data.map((item) => ({
+            name: item.name || "",
+            subtitle: item.subtitle || "",
+            text: item.text || "",
+            initials: item.initials || (item.name ? item.name.charAt(0).toUpperCase() : "T"),
+          }));
+          setList(formatted);
+        }
+      });
+    }
+  }, []);
+
   return (
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
@@ -122,7 +143,7 @@ function Testimonials() {
 
         {/* Written testimonial cards */}
         <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((item) => (
+          {list.map((item) => (
             <div
               key={item.name}
               className="bg-white p-7 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-100 flex flex-col"
