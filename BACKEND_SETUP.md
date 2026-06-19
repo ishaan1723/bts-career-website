@@ -1,6 +1,6 @@
 # Google Sheets CMS Backend Setup Guide
 
-We have set up a Google Sheets integration to act as the website's content management system (CMS). Your client ("Sir") can update **Our Impact (Stats)** and **Testimonials** directly from a Google Sheet.
+We have set up a Google Sheets integration to act as the website's content management system (CMS). Your client ("Sir") can update **Our Impact (Stats)**, **Testimonials**, **FAQs (Frequently Asked Questions)**, and **Global Contact Details (Phone, Email, WhatsApp, Address)** directly from a Google Sheet.
 
 Here is how to set it up:
 
@@ -9,9 +9,11 @@ Here is how to set it up:
 ## Step 1: Create the Google Sheet
 1. Open [Google Sheets](https://sheets.google.com) and create a new blank spreadsheet.
 2. Rename the spreadsheet to something like `BTS Website Content`.
-3. Create two tabs (sheets) at the bottom of the page, named exactly:
+3. Create four tabs (sheets) at the bottom of the page, named exactly:
    - **`Stats`**
    - **`Testimonials`**
+   - **`FAQs`**
+   - **`Settings`**
 
 ---
 
@@ -47,6 +49,36 @@ Fill in the rows starting from Row 2. For example:
 
 ---
 
+### Tab 3: `FAQs`
+In the third tab, add the following headers in Row 1:
+- Column A: **`question`**
+- Column B: **`answer`**
+
+Fill in the rows starting from Row 2. For example:
+| question | answer |
+| :--- | :--- |
+| Who can take the Career Clarity Assessment? | Students from Class 8 onwards, college students, and professionals. |
+| How is the assessment conducted? | The assessment is conducted online and followed by a detailed report. |
+| In which languages is the assessment available? | English, Hindi, and Gujarati. |
+| What is the starting price? | The Career Clarity Assessment starts from ₹499. |
+
+---
+
+### Tab 4: `Settings`
+In the fourth tab, add the following headers in Row 1:
+- Column A: **`key`**
+- Column B: **`value`**
+
+Fill in the settings keys exactly as shown below (these will update all phone, email, and address text links across the entire website instantly):
+| key | value |
+| :--- | :--- |
+| phone | 9824468558 |
+| whatsapp | 919824468558 |
+| email | info@techbharat.net |
+| address | 6, Shriji Bungalows, Deesa-Palanpur Highway, Palanpur |
+
+---
+
 ## Step 3: Make the Spreadsheet Readable by the App
 1. Click the **Share** button at the top right of your Google Sheet.
 2. Under "General Access", change it from "Restricted" to **"Anyone with the link can view"** (keep it as **Viewer**, do NOT set to Editor).
@@ -63,7 +95,7 @@ Create a `.env` file at the root of the `frontend` folder (or set it in your hos
 VITE_GOOGLE_SHEET_ID=YOUR_COPIED_SHEET_ID
 ```
 
-*(If this environment variable is blank or missing, the website will automatically fallback to the hardcoded statistics and testimonials, ensuring the site never breaks.)*
+*(If this environment variable is blank or missing, the website will automatically fallback to the hardcoded defaults, ensuring the site never breaks.)*
 
 ---
 

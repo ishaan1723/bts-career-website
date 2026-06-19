@@ -21,8 +21,11 @@ import {
   FaEnvelope
 } from "react-icons/fa";
 import careerBanner from "../assets/career_banner.png";
+import { useSettings } from "../utils/SettingsContext";
 
 function Hero() {
+  const { phone, email } = useSettings();
+
   return (
     <section
       id="home"
@@ -265,13 +268,13 @@ function Hero() {
               Bharat Technologies & Supplies • Career Guidance
             </div>
             <div className="flex flex-wrap gap-6">
-              <a href="tel:9224466558" className="flex items-center gap-2 hover:text-emerald-400 hover:scale-102 transition duration-300">
+              <a href={`tel:${phone}`} className="flex items-center gap-2 hover:text-emerald-400 hover:scale-102 transition duration-300">
                 <FaPhoneAlt className="text-emerald-500 text-xs" />
-                <span className="font-bold">9224466558</span>
+                <span className="font-bold">{phone}</span>
               </a>
-              <a href="mailto:info@techbharat.net" className="flex items-center gap-2 hover:text-blue-400 hover:scale-102 transition duration-300">
+              <a href={`mailto:${email}`} className="flex items-center gap-2 hover:text-blue-400 hover:scale-102 transition duration-300">
                 <FaEnvelope className="text-blue-400 text-xs" />
-                <span className="font-bold">info@techbharat.net</span>
+                <span className="font-bold">{email}</span>
               </a>
             </div>
           </div>

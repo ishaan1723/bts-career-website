@@ -15,9 +15,11 @@ import Stats from "./components/Stats";
 import Founder from "./components/Founder";
 import WhoWeHelp from "./components/WhoWeHelp";
 import Problems from "./components/Problems";
+import { SettingsProvider } from "./utils/SettingsContext";
+
 function App() {
   return (
-    <>
+    <SettingsProvider>
       <Navbar />
       <Hero />
       <Stats />
@@ -36,7 +38,7 @@ function App() {
       <CTA />
       <Footer />
       <WhatsAppButton />
-    </>
+    </SettingsProvider>
   );
 }
 

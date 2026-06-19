@@ -1,4 +1,8 @@
+import { useSettings } from "../utils/SettingsContext";
+
 function Footer() {
+  const { phone, email, address } = useSettings();
+
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-6">
@@ -20,10 +24,9 @@ function Footer() {
           Understand Yourself Before Choosing Your Career.
         </p>
 
-        <p>📞 9824468558 </p>
-        <p>📧 info@techbharat.net</p>
-        <p>📍 6, Shriji Bungalows, Deesa-Palanpur Highway,
-      Palanpur</p>
+        <p>📞 {phone} </p>
+        <p>📧 {email}</p>
+        <p>📍 {address}</p>
 
         {/* Footer Credits */}
         <div className="border-t border-gray-700 mt-8 pt-6 text-sm text-gray-300">

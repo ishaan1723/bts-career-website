@@ -1,22 +1,43 @@
+import { useState, useEffect } from "react";
+import { fetchGoogleSheetData } from "../utils/googleSheets";
+
+const FALLBACK_FAQS = [
+  {
+    question: "Who can take the Career Clarity Assessment?",
+    answer: "Students from Class 8 onwards, college students, and professionals."
+  },
+  {
+    question: "How is the assessment conducted?",
+    answer: "The assessment is conducted online and followed by a detailed report."
+  },
+  {
+    question: "In which languages is the assessment available?",
+    answer: "English, Hindi, and Gujarati."
+  },
+  {
+    question: "What is the starting price?",
+    answer: "The Career Clarity Assessment starts from ₹499."
+  }
+];
+
+const SHEET_ID = import.meta.env.VITE_GOOGLE_SHEET_ID || "";
+
 function FAQ() {
-  const faqs = [
-    {
-      question: "Who can take the Career Clarity Assessment?",
-      answer: "Students from Class 8 onwards, college students, and professionals."
-    },
-    {
-      question: "How is the assessment conducted?",
-      answer: "The assessment is conducted online and followed by a detailed report."
-    },
-    {
-      question: "In which languages is the assessment available?",
-      answer: "English, Hindi, and Gujarati."
-    },
-    {
-      question: "What is the starting price?",
-      answer: "The Career Clarity Assessment starts from ₹499."
+  const [faqs, setFaqs] = useState(FALLBACK_FAQS);
+
+  useEffect(() => {
+    if (SHEET_ID) {
+      fetchGoogleSheetData(SHEET_ID, "FAQs").then((data) => {
+        if (data && data.length > 0) {
+          const formatted = data.map((item) => ({
+            question: item.question || "",
+            answer: item.answer || "",
+          }));
+          setFaqs(formatted);
+        }
+      });
     }
-  ];
+  }, []);
 
   return (
     <section className="py-24 bg-gray-50">
