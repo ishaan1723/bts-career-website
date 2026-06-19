@@ -31,22 +31,48 @@ export async function fetchGoogleSheetData(sheetId, tabName) {
     const jsonString = text.substring(startIdx + 1, endIdx + 1);
     const data = JSON.parse(jsonString);
     
-    // Get column labels/headers
-    const cols = data.table.cols.map(col => col.label || col.id);
+    if (!data.table || !data.table.rows || data.table.rows.length === 0) {
+      return [];
+    }
+
+    // Determine if the first row is a header row (in case Google Sheets fails to parse headers)
+    const firstRowCells = data.table.rows[0].c;
+    const firstRowValues = firstRowCells.map(cell => 
+      cell && cell.v !== null ? String(cell.v).trim().toLowerCase().replace(/\s+/g, "_") : ""
+    );
     
-    // Map rows to objects using header names as keys
-    const rows = data.table.rows.map(row => {
+    const commonHeaders = ["title", "description", "name", "subtitle", "text", "question", "answer", "key", "value", "initials"];
+    const isFirstRowHeader = firstRowValues.some(val => commonHeaders.includes(val));
+    
+    let headerNames = [];
+    let startRowIndex = 0;
+    
+    if (isFirstRowHeader) {
+      headerNames = firstRowValues;
+      startRowIndex = 1; // Skip header row in data
+    } else {
+      // Use Google Sheet column labels if available, otherwise fallback to column indices (a, b, c...)
+      headerNames = data.table.cols.map((col, index) => 
+        col.label ? col.label.trim().toLowerCase().replace(/\s+/g, "_") : String.fromCharCode(97 + index)
+      );
+      startRowIndex = 0;
+    }
+    
+    // Map rows to objects using headerNames as keys
+    const rows = [];
+    for (let i = startRowIndex; i < data.table.rows.length; i++) {
+      const row = data.table.rows[i];
+      if (!row || !row.c) continue;
+      
       const rowData = {};
       row.c.forEach((cell, index) => {
-        const colName = cols[index];
+        const colName = headerNames[index];
         if (colName) {
-          // Store cell value (using lowercase key for convenience)
-          const key = colName.trim().toLowerCase().replace(/\s+/g, "_");
-          rowData[key] = cell ? cell.v : "";
+          rowData[colName] = cell && cell.v !== null ? cell.v : "";
         }
       });
-      return rowData;
-    });
+      rows.push(rowData);
+    }
     
     return rows;
   } catch (error) {
